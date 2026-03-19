@@ -103,9 +103,9 @@ export default function Dashboard() {
           <button onClick={() => navigate('/scan')} style={{ padding: '7px 14px', background: '#1D9E75', color: 'white', border: 'none', borderRadius: '8px', fontSize: '12px', cursor: 'pointer' }}>
             Scanner
           </button>
-          <a href="/profile" style={{ padding: '7px 14px', background: 'rgba(255,255,255,0.1)', color: 'white', borderRadius: '8px', fontSize: '12px', cursor: 'pointer', textDecoration: 'none' }}>
+          <button onClick={() => { window.location.assign('/profile') }} style={{ padding: '7px 14px', background: 'rgba(255,255,255,0.1)', color: 'white', border: 'none', borderRadius: '8px', fontSize: '12px', cursor: 'pointer' }}>
   Profil
-</a>
+</button>
           <button onClick={handleSubscribe} style={{ padding: '7px 14px', background: '#2563EB', color: 'white', border: 'none', borderRadius: '8px', fontSize: '12px', cursor: 'pointer' }}>
             Abonnement
           </button>
