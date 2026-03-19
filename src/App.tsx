@@ -11,6 +11,7 @@ interface PrivateRouteProps {
 
 function PrivateRoute({ children }: PrivateRouteProps) {
   const token = localStorage.getItem('token')
+  console.log('PrivateRoute token:', token ? 'EXISTS' : 'MISSING')
   if (!token) return <Navigate to="/login" />
   return <>{children}</>
 }
