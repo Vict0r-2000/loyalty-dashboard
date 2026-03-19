@@ -21,7 +21,7 @@ export default function Dashboard() {
 
   const business = JSON.parse(localStorage.getItem('business') || '{}')
 
-   useEffect(() => {
+  useEffect(() => {
     loadPrograms()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -51,6 +51,15 @@ export default function Dashboard() {
     }
   }
 
+  const handleSubscribe = async () => {
+    try {
+      const res = await api.post('/billing/create-checkout')
+      window.location.href = res.data.url
+    } catch {
+      alert('Erreur lors de la redirection vers Stripe')
+    }
+  }
+
   const logout = () => {
     localStorage.clear()
     navigate('/login')
@@ -64,6 +73,9 @@ export default function Dashboard() {
           <span style={{ fontSize: '13px', color: '#666' }}>{business.name}</span>
           <button onClick={() => navigate('/scan')} style={{ padding: '8px 16px', background: '#1D9E75', color: 'white', border: 'none', borderRadius: '8px', fontSize: '13px', cursor: 'pointer' }}>
             Scanner
+          </button>
+          <button onClick={handleSubscribe} style={{ padding: '8px 16px', background: '#534AB7', color: 'white', border: 'none', borderRadius: '8px', fontSize: '13px', cursor: 'pointer' }}>
+            Abonnement
           </button>
           <button onClick={logout} style={{ padding: '8px 16px', background: 'transparent', color: '#666', border: '1px solid #ddd', borderRadius: '8px', fontSize: '13px', cursor: 'pointer' }}>
             Déconnexion
