@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import axios from 'axios'
 import QRCode from 'qrcode'
-import api from '../services/api'
+
+const publicApi = axios.create({
+  baseURL: 'https://loyalty-api-production-2f87.up.railway.app/api'
+})
 
 interface CardData {
   id: string
@@ -32,7 +36,7 @@ export default function CardView() {
 
   const loadCard = async () => {
     try {
-      const res = await api.get(`/cards/${cardId}`)
+      const res = await publicApi.get(`/cards/${cardId}`)
       setCard(res.data.card)
       const url = await QRCode.toDataURL(cardId!, {
         width: 200,
@@ -72,7 +76,6 @@ export default function CardView() {
   return (
     <div style={{ minHeight: '100vh', background: '#f0f4f8', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2rem 1rem' }}>
 
-      {/* Carte wallet */}
       <div style={{ background: color, borderRadius: '20px', padding: '24px', width: '100%', maxWidth: '340px', color: 'white', position: 'relative', overflow: 'hidden', marginBottom: '1.5rem' }}>
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, fontSize: '28px', lineHeight: '1.4', opacity: .07, wordBreak: 'break-all', padding: '8px', pointerEvents: 'none' }}>
           {emoji.repeat(50)}
@@ -106,7 +109,6 @@ export default function CardView() {
         </div>
       </div>
 
-      {/* QR Code */}
       <div style={{ background: 'white', borderRadius: '16px', padding: '1.5rem', textAlign: 'center', width: '100%', maxWidth: '340px', border: '0.5px solid #e2e8f0' }}>
         <div style={{ fontSize: '13px', color: '#64748b', marginBottom: '1rem' }}>
           Montrez ce QR code en caisse pour obtenir votre tampon
