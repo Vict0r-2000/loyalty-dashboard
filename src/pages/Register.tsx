@@ -31,12 +31,9 @@ export default function Register() {
           <p style={{ fontSize: '48px', margin: '0 0 1rem' }}>🎉</p>
           <h2 style={{ fontSize: '18px', margin: '0 0 0.5rem', color: '#0f2d52' }}>Carte créée !</h2>
           <p style={{ color: '#64748b', fontSize: '13px', marginBottom: '1.5rem' }}>
-            Votre carte de fidélité est prête. Ajoutez-la à vos favoris pour y accéder facilement.
+            Votre carte de fidélité est prête.
           </p>
-          
-            href={`/card/${cardId}`}
-            style={{ display: 'block', padding: '12px', background: '#0f2d52', color: 'white', borderRadius: '8px', textDecoration: 'none', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}
-          >
+          <a href={`/card/${cardId}`} style={{ padding: '12px 24px', background: '#0f2d52', color: 'white', borderRadius: '8px', textDecoration: 'none', fontSize: '14px' }}>
             Voir ma carte
           </a>
         </div>
@@ -54,29 +51,13 @@ export default function Register() {
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: '1rem' }}>
             <label style={{ fontSize: '13px', color: '#64748b', display: 'block', marginBottom: '4px' }}>Prénom</label>
-            <input
-              value={name}
-              onChange={e => setName(e.target.value)}
-              placeholder="Marie"
-              style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '14px', boxSizing: 'border-box' }}
-              required
-            />
+            <input value={name} onChange={e => setName(e.target.value)} placeholder="Marie" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '14px', boxSizing: 'border-box' }} required />
           </div>
           <div style={{ marginBottom: '1.5rem' }}>
             <label style={{ fontSize: '13px', color: '#64748b', display: 'block', marginBottom: '4px' }}>Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              placeholder="marie@email.com"
-              style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '14px', boxSizing: 'border-box' }}
-              required
-            />
+            <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="marie@email.com" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '14px', boxSizing: 'border-box' }} required />
           </div>
-          <button
-            type="submit"
-            style={{ width: '100%', padding: '12px', background: '#0f2d52', color: 'white', border: 'none', borderRadius: '8px', fontSize: '14px', cursor: 'pointer' }}
-          >
+          <button type="submit" style={{ width: '100%', padding: '12px', background: '#0f2d52', color: 'white', border: 'none', borderRadius: '8px', fontSize: '14px', cursor: 'pointer' }}>
             Obtenir ma carte
           </button>
         </form>
