@@ -6,7 +6,7 @@ export default function Register() {
   const { programId } = useParams()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
-  const [walletLink, setWalletLink] = useState('')
+  const [cardId, setCardId] = useState('')
   const [done, setDone] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -17,7 +17,7 @@ export default function Register() {
         customerEmail: email,
         customerName: name
       })
-      setWalletLink(res.data.card.walletLink)
+      setCardId(res.data.card.id)
       setDone(true)
     } catch {
       alert("Erreur inscription")
@@ -26,12 +26,18 @@ export default function Register() {
 
   if (done) {
     return (
-      <div style={{ minHeight: '100vh', background: '#f5f5f5', padding: '1rem' }}>
+      <div style={{ minHeight: '100vh', background: '#f0f4f8', padding: '1rem' }}>
         <div style={{ background: 'white', padding: '2rem', borderRadius: '12px', maxWidth: '400px', margin: '2rem auto', textAlign: 'center' }}>
-          <p style={{ fontSize: '48px' }}>🎉</p>
-          <h2 style={{ fontSize: '18px' }}>Carte créée !</h2>
-          <a href={walletLink} target="_blank" rel="noreferrer" style={{ color: 'white', background: '#1D9E75', padding: '12px 20px', borderRadius: '8px', textDecoration: 'none' }}>
-            Ajouter à Google Wallet
+          <p style={{ fontSize: '48px', margin: '0 0 1rem' }}>🎉</p>
+          <h2 style={{ fontSize: '18px', margin: '0 0 0.5rem', color: '#0f2d52' }}>Carte créée !</h2>
+          <p style={{ color: '#64748b', fontSize: '13px', marginBottom: '1.5rem' }}>
+            Votre carte de fidélité est prête. Ajoutez-la à vos favoris pour y accéder facilement.
+          </p>
+          
+            href={`/card/${cardId}`}
+            style={{ display: 'block', padding: '12px', background: '#0f2d52', color: 'white', borderRadius: '8px', textDecoration: 'none', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}
+          >
+            Voir ma carte
           </a>
         </div>
       </div>
@@ -39,19 +45,38 @@ export default function Register() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f5f5', padding: '1rem' }}>
+    <div style={{ minHeight: '100vh', background: '#f0f4f8', padding: '1rem' }}>
       <div style={{ background: 'white', padding: '2rem', borderRadius: '12px', maxWidth: '400px', margin: '2rem auto' }}>
-        <h2 style={{ fontSize: '18px' }}>Obtenir ma carte</h2>
+        <h2 style={{ margin: '0 0 0.5rem', fontSize: '18px', color: '#0f2d52' }}>Obtenir ma carte</h2>
+        <p style={{ color: '#64748b', fontSize: '13px', marginBottom: '1.5rem' }}>
+          Inscrivez-vous pour recevoir votre carte de fidélité.
+        </p>
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: '1rem' }}>
-            <label style={{ fontSize: '13px', display: 'block', marginBottom: '4px' }}>Prénom</label>
-            <input value={name} onChange={e => setName(e.target.value)} placeholder="Marie" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ddd', boxSizing: 'border-box' }} required />
+            <label style={{ fontSize: '13px', color: '#64748b', display: 'block', marginBottom: '4px' }}>Prénom</label>
+            <input
+              value={name}
+              onChange={e => setName(e.target.value)}
+              placeholder="Marie"
+              style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '14px', boxSizing: 'border-box' }}
+              required
+            />
           </div>
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ fontSize: '13px', display: 'block', marginBottom: '4px' }}>Email</label>
-            <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="marie@email.com" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ddd', boxSizing: 'border-box' }} required />
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{ fontSize: '13px', color: '#64748b', display: 'block', marginBottom: '4px' }}>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder="marie@email.com"
+              style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '14px', boxSizing: 'border-box' }}
+              required
+            />
           </div>
-          <button type="submit" style={{ width: '100%', padding: '12px', background: '#534AB7', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>
+          <button
+            type="submit"
+            style={{ width: '100%', padding: '12px', background: '#0f2d52', color: 'white', border: 'none', borderRadius: '8px', fontSize: '14px', cursor: 'pointer' }}
+          >
             Obtenir ma carte
           </button>
         </form>
