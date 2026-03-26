@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard'
 import Scan from './pages/Scan'
 import Register from './pages/Register'
 import Profile from './pages/Profile'
+import CardView from './pages/CardView'
 
 interface PrivateRouteProps {
   children: React.ReactNode
@@ -22,6 +23,7 @@ export default function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register/:programId" element={<Register />} />
+        <Route path="/card/:cardId" element={<CardView />} />
         <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         <Route path="/scan" element={<PrivateRoute><Scan /></PrivateRoute>} />
         <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
